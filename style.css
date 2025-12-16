@@ -52,23 +52,66 @@ body, html {
 }
 
 #sidebar-content {
-  padding: 60px 15px 15px 15px;
+  padding: 5px 15px 15px 15px;
+  height: 100%;
   overflow-y: auto;
 }
 
-/* ======== Search bar kanan atas ======== */
-.leaflet-control-geocoder {
-  top: 10px !important;
-  right: 10px !important;
-  z-index: 1200;
-  background-color: #ffffff !important;
-  border-radius: 6px;
-  border: 1px solid #ffb703 !important;
+#sidebar label {
+    display: block;
+    margin-bottom: 5px; /* opsional, beri jarak antar checkbox */
 }
-.leaflet-control-geocoder-icon {
-  background-color: #ff8c00 !important;
-  color: #ffb703 !important;
+
+/* Layer options WIUP */
+.layer-options {
+  padding: 5px 10px;
+  display: none;
+  background-color: #1a1a1a; /* sama dengan sidebar */
+  border-top: 1px solid #ff8c00;
+  margin-top: 5px;
   border-radius: 4px;
+}
+
+/* Dropdown Filter Komoditas WIUP */
+#filterKomoditas {
+  width: 100%;               /* full width panel */
+  padding: 6px 8px;
+  margin-top: 4px;
+  background-color: #222;    /* panel gelap */
+  color: #ffb703;            /* teks kuning */
+  border: 1px solid #ff8c00; /* border oranye */
+  border-radius: 4px;
+  font-weight: bold;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#filterKomoditas:hover,
+#filterKomoditas:focus {
+  background-color: #333;
+  border-color: #ffb703;
+}
+
+/* Style dropdown basemap */
+#basemapDropdown {
+  width: 100%;
+  padding: 8px 10px;
+  background-color: #1a1a1a; /* sama dengan sidebar */
+  color: #ffb703;             /* teks kuning */
+  border: 2px solid #ff8c00;  /* border oranye */
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+#basemapDropdown:hover,
+#basemapDropdown:focus {
+  background-color: #222;       /* sedikit terang saat hover/focus */
+  border-color: #ffb703;        /* border berubah kuning */
 }
 
 
@@ -163,6 +206,23 @@ body, html {
   border-top: 2px solid #AD40FF;
 }
 
+/*Legend Projects*/
+#legendProjects .item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+  font-size: 13px;
+  color: #fff; /* sesuaikan warna teks sidebar */
+}
+
+#legendProjects .box {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  margin-right: 5px;
+  border: 1px solid #000;
+}
+
 /* Drag & Drop */
 #layerList {
   list-style: none;
@@ -249,3 +309,61 @@ body, html {
     gap: 8px;
 }
 
+/*Style Layer Projects*/
+.legend-box {
+  display:inline-block;
+  width:14px;
+  height:14px;
+  margin-left:6px;
+  border-radius:3px;
+}
+
+/* Fitur Search - Sidebar / Web Gelap */
+#searchInput {
+  width: 100%;
+  padding: 3px 3px;
+  margin-bottom: 6px;
+  background-color: #222;       /* gelap seperti sidebar */
+  color: #ffb703;               /* teks kuning */
+  border: 1px solid #ff8c00;    /* border oranye */
+  border-radius: 4px;
+  outline: none;
+  font-size: 13px;
+  transition: all 0.3s ease;
+}
+
+#searchInput:focus {
+  background-color: #333;
+  border-color: #ffb703;
+}
+
+/* Hasil search */
+.search-results {
+  max-height: 180px;
+  overflow-y: auto;
+  border: 1px solid #ff8c00;
+  background-color: #1a1a1a;     /* gelap */
+  color: #ffb703;
+  display: none;
+  border-radius: 4px;
+  padding: 4px 0;
+  z-index: 1400;                  /* tetap di atas map */
+}
+
+/* Item hasil search */
+.search-item {
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s ease;
+}
+
+.search-item:hover {
+  background-color: #333;         /* efek hover lebih jelas */
+}
+
+/* Label tambahan / type */
+.search-type {
+  font-size: 11px;
+  color: #ccc;                    /* sedikit abu agar tidak terlalu mencolok */
+}
