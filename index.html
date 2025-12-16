@@ -20,10 +20,6 @@
   <!-- Turf -->
   <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
 
-  <!-- Leaflet Geocoder -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
-  <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
-
   <!-- MapLibre -->
   <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css"/>
   <script src="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js"></script>
@@ -34,6 +30,9 @@
   <!--Esri Leaflet-->
   <script src="https://unpkg.com/esri-leaflet/dist/esri-leaflet.js"></script>
 
+  <!--Omnivore (Mapbox)-->
+  <script src="https://unpkg.com/leaflet-omnivore@0.3.4/leaflet-omnivore.min.js"></script>
+
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -43,6 +42,15 @@
   <div id="sidebar" class="collapsed">
     <button id="toggleSidebar">☰</button>
     <div id="sidebar-content">
+      <h3>Search</h3>
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Cari code project / perusahaan..."
+        autocomplete="off"
+      />
+      <div id="searchResults" class="search-results"></div>
+
       <h3>Layer Control</h3>
 
       <ul id="layerList">
@@ -64,6 +72,10 @@
           <div class="layer-options" style="display:none;">
               <label>Transparansi</label>
               <input type="range" id="wiupOpacity" min="0" max="1" step="0.05" value="1">
+              <label>Filter Komoditas</label>
+              <select id="filterKomoditas">
+                <option value="ALL">Semua</option>
+              </select>
           </div>
 
         </li>
@@ -91,14 +103,53 @@
           </div>
 
         </li> 
+        
+        <!-- Layer Projects -->
+        <li class="layer-item" data-layer="projects">
+          <div class="layer-header">
+            <span class="drag-handle">☰</span>
+            <label>
+              <input type="checkbox" id="projectsCheck" checked>
+              Projects
+            </label>
+            <button class="expandBtn">▼</button>
+          </div>
+          <div class="layer-options" style="display:none;">
+            <label>Transparansi</label>
+            <input type="range" id="projectsOpacity" min="0" max="1" step="0.05" value="1">
+            
+            <h4>Status Project</h4>
+            <label>
+              <input type="checkbox" id="projDesk" checked> Desk Studied
+            </label>
+            <label>
+              <input type="checkbox" id="projNotDesk" checked> Not Yet Desk Studied
+            </label>
+            <label>
+              <input type="checkbox" id="projMapping" checked> Mapping
+            </label>
+            <label>
+              <input type="checkbox" id="projSurvey" checked> Survey
+            </label>
 
-      </ul>
+            <h4>Legend Projects</h4>
+            <div id="legendProjects">
+              <div class="item"><span class="box" style="background:#e91e63;"></span>Desk Studied</div>
+              <div class="item"><span class="box" style="background:#f44336;"></span>Not Yet Desk Studied</div>
+              <div class="item"><span class="box" style="background:#2196f3;"></span>Mapping</div>
+              <div class="item"><span class="box" style="background:#4caf50;"></span>Survey</div>
+            </div>
+          </div>
+        </li>
 
+      <h4>Upload KML</h4>
+      <input type="file" id="kmlInput" accept=".kml" multiple />
+      <div id="kmlLayerList"></div>
 
-      <h3>Filter Komoditas</h3>
-      <select id="filterKomoditas">
-        <option value="ALL">Semua</option>
-      </select>
+      <label>
+        <input type="checkbox" id="toggleKml" checked />
+        Show KML Layer
+      </label>
 
       <h3>Basemap</h3>
       <div id="basemapControl"></div>
@@ -106,7 +157,6 @@
     </div>
   </div>
 
-  <!--Mani Script-->
-  <script src="script.js"></script>
+  <script defer src="script.js"></script>
 </body>
 </html>
